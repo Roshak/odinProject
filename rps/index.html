@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>RockPaperScissors</title>
+</head>
+
+<body>
+    <script>
+        function randomInt() {
+            return Math.round(Math.random() * (2 - 0)) + 0;
+        }
+
+        function computerPlay() {
+            let val = randomInt();
+            if (val === 0) return 'rock'
+            else if (val === 1) return 'paper'
+            else if (val === 2) return 'scissor'
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {
+                return -1;
+            }
+            if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissor') {
+                return 1;
+            }
+            if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'rock') {
+                return 0;
+            }
+            if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'paper') {
+                return 0;
+            }
+            if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissor') {
+                return -1;
+            }
+            if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {
+                return 1;
+            }
+            if (playerSelection.toLowerCase() === 'scissor' && computerSelection.toLowerCase() === 'paper') {
+                return 1;
+            }
+            if (playerSelection.toLowerCase() === 'scissor' && computerSelection.toLowerCase() === 'scissor') {
+                return 0;
+            }
+            if (playerSelection.toLowerCase() === 'scissor' && computerSelection.toLowerCase() === 'rock') {
+                return -1;
+            }
+        }
+
+        function getPlayerMove() {
+            while (true) {
+                let input = prompt("Please insert value: rock, paper, scissor");
+                input = input.toLowerCase();
+                if (input === "rock" || input === "paper" || input === "scissor") {
+                    return input;
+                }
+            }
+        }
+
+        function game() {
+            let playerPoints = 0;
+            let computerPoints = 0;
+            for (let i = 0; i < 5; i++) {
+                const playerValue = getPlayerMove();
+                const computerValue = computerPlay();
+                let res = playRound(playerValue, computerValue);
+                (res > 0) ? playerPoints += res : computerPoints += 1;
+                console.log(`Player points: ${playerPoints} // Computer Points: ${computerPoints}`)
+
+            }
+            (computerPoints >= playerPoints) ? console.log('You lost') : console.log('You won');
+        }
+
+        game();
+    </script>
+</body>
+
+</html>
