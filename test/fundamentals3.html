@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Function scope example</title>
+</head>
+
+<body>
+
+    <script>
+        function output(value) {
+            const para = document.createElement('p');
+            document.body.appendChild(para);
+            para.textContent = 'Value: ' + value;
+        }
+
+        let add7 = (num) => num + 7;
+
+        let multiply = (a, b) => a * b;
+
+        let capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+        let lastLetter = (str) => str.charAt(str.length - 1);
+
+        output(add7(10));
+        output(multiply(10, 10));
+        output(capitalize("AsdsdwAWdAWaAWdwaA"));
+        output(lastLetter("abcdefghi"));
+    </script>
+</body>
+
+</html>

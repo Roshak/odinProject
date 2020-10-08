@@ -1,0 +1,1 @@
+Exercise for the odin project everything in this page is just for looks and not working
