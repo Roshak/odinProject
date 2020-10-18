@@ -1,5 +1,5 @@
-function translate() {
-	// body...
+function translate(s) {
+	return s.split(' ')
 }
 
 
