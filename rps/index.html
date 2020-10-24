@@ -4,9 +4,18 @@
 <head>
     <meta charset="utf-8">
     <title>RockPaperScissors</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <button class="newGameButton">NewGame</button>
+    <button class="playButton" id=rock>Rock</button>
+    <button class="playButton" id=paper>Paper</button>
+    <button class="playButton" id=scissor>Scissor</button>
+    <p id="scoreboard">Scoreboard</p>
+    <p id="winner">  </p>
+    <div id="log"></div>
+
     <script>
         function randomInt() {
             return Math.round(Math.random() * (2 - 0)) + 0;
@@ -49,31 +58,80 @@
             }
         }
 
-        function getPlayerMove() {
-            while (true) {
-                let input = prompt("Please insert value: rock, paper, scissor");
-                input = input.toLowerCase();
-                if (input === "rock" || input === "paper" || input === "scissor") {
-                    return input;
-                }
+        let playerPoints = 0;
+        let computerPoints = 0;
+
+        const buttons = document.querySelectorAll('.playButton');
+        const score = document.querySelector('#scoreboard');
+        const winner = document.querySelector('#winner');
+
+        buttons.forEach(button => {
+            button.disabled = "disabled";
+            button.addEventListener('click', game)
+        })
+
+        const newGameButton = document.querySelector('.newGameButton');
+
+        newGameButton.addEventListener('click', startNewGame);
+
+        function game(e) {
+            const pressedButton = e.target.id;
+            const log = document.querySelector('#log');
+            const computerValue = computerPlay();
+
+            let res = playRound(pressedButton, computerValue);
+            (res >= 0) ? playerPoints += res : computerPoints += 1;
+
+            const p = document.createElement('p');
+
+            p.textContent = `Your move: ${pressedButton} || Computer move: ${computerValue}`;
+            p.classList.add('logRow');
+            log.appendChild(p);
+
+
+            score.textContent = `Player Score: ${playerPoints}, Computer score: ${computerPoints}`;
+
+            let winMsg = ''
+            if (playerPoints >= 5) winMsg = 'Player won!!';
+            if (computerPoints >= 5) winMsg = 'Computer won!!';
+
+            if (winMsg !== '') {
+                winner.textContent = winMsg;
+                newGameButton.disabled = '';
+                disableButtons();
             }
         }
 
-        function game() {
-            let playerPoints = 0;
-            let computerPoints = 0;
-            for (let i = 0; i < 5; i++) {
-                const playerValue = getPlayerMove();
-                const computerValue = computerPlay();
-                let res = playRound(playerValue, computerValue);
-                (res > 0) ? playerPoints += res : computerPoints += 1;
-                console.log(`Player points: ${playerPoints} // Computer Points: ${computerPoints}`)
-
-            }
-            (computerPoints >= playerPoints) ? console.log('You lost') : console.log('You won');
+        function startNewGame(e) {
+            playerPoints = 0;
+            computerPoints = 0;
+            score.textContent = 'Scoreboard: ';
+            winner.textContent = ' ';
+            newGameButton.disabled = 'disabled';
+            enableButtons();
+            clearLog()
         }
 
-        game();
+        function disableButtons() {
+            buttons.forEach(button => {
+                button.disabled = 'disabled';
+            })
+        }
+
+        function enableButtons() {
+            buttons.forEach(button => {
+                button.disabled = '';
+            })
+        }
+
+        function clearLog() {
+            const logs = document.querySelectorAll('.logRow');
+            logs.forEach(log => {
+                log.parentNode.removeChild(log)
+            })
+        }
+
+        //game();
     </script>
 </body>
 

@@ -1,0 +1,13 @@
+button {
+    width: 250px;
+    height: 60px;
+}
+
+#winner {
+   font-weight: bold;
+}
+
+.newGameButton {
+    display: block;
+    text-align: center;
+}
