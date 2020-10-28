@@ -9,10 +9,23 @@
 </head>
 
 <body>
-    <h1>Etch-a-Sketch</h1>
-    <div class="container"></div>
+    <div class="container">
+        <h1>Etch-a-Sketch</h1>
+        <div class="gridContainer">
+            <div class="grid"></div>
+        </div>
+        <div class="controls">
+            <input type="checkbox" id="shadows">
+            <label for="shadows">Shadows</label><br>
+            <input type="checkbox" id="rainbow">
+            <label for="shadows">Rainbow Mode</label><br>
+            <input type="text" id="gridSize">
+            <label for="gridSize">Size</label>
+            <button id="reset">Reset</button>
+        </div>
+    </div>
 
-    <scrpit src=eas.js></scrpit>
+    <script src=eas.js></script>
 </body>
 
 </html>

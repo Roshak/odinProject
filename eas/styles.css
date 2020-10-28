@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.block {
+    width: 60px;
+    height: 60px;
+    border: 1px solid;
+    flex: 1 0 auto;
+}
+
+.grid {
+    display: flex;
+}
+
+.gridContainer {
+    display: block;
+    text-align: center;
+    margin: 15px;
+}
+
+.selected {
+    background-color: rgba(0, 0, 0, 1) !important;
+    border-color: white !important;
+}
+
+.selectedShadow {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.gameArea {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+input{
+    margin-top: 5px;
+}
+
+#gridSize {
+    width: 40px;
+}
